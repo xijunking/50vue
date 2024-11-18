@@ -55,7 +55,7 @@ const dataIndex = ref(0)
     margin: 0 auto;
     text-align: center;
     line-height: 60px;
-    transition: border-color 1s ease;
+    transition: border-color 0.3s ease;
 }
 
 .stepLine {
