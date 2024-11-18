@@ -11,15 +11,15 @@ const listarr: ListItem[] = [
     //     path: '/'
     // },
     {
-        name: 'day0',
+        name: '扩展卡片',
         path: '/day0'
     },
     {
-        name: 'day1',
+        name: '进度步骤',
         path: '/day1'
     },
     {
-        name: 'day2',
+        name: '页面旋转',
         path: '/day2'
     },
 
@@ -37,17 +37,18 @@ const listarr: ListItem[] = [
     <div class="main-box">
 
         <header class="header">
-            <h2>50 small project</h2>
+            <h2>50 project</h2>
         </header>
 
-        <el-row :gutter="20">
-            <el-col v-for="(item, index) in listarr" :span="4" :key="index">
-                <RouterLink :to="item.path">
-                    <el-card shadow="hover">{{ item.name }}</el-card>
-                </RouterLink>
-            </el-col>
-        </el-row>
-
+        <div>
+            <el-row :gutter="20">
+                <el-col v-for="(item, index) in listarr" :span="4" :key="index" style="margin-bottom: 14px;">
+                    <RouterLink :to="item.path">
+                        <el-card shadow="hover">{{ item.name }}</el-card>
+                    </RouterLink>
+                </el-col>
+            </el-row>
+        </div>
     </div>
 </template>
 
@@ -55,8 +56,11 @@ const listarr: ListItem[] = [
 .main-box {
     background-color: #fff;
     width: 100%;
-    height: 600px;
-    margin: 80px auto;
+    height: 100px;
+    margin: 0 auto;
+    padding: 100px;
+    padding-top: 40px;
+    box-sizing: border-box;
 }
 
 .header {
