@@ -22,6 +22,10 @@ const listarr: ListItem[] = [
         name: '页面旋转',
         path: '/day2'
     },
+    {
+        name: '隐藏搜索',
+        path: '/day3'
+    },
 
 
 
