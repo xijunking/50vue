@@ -26,6 +26,10 @@ const listarr: ListItem[] = [
         name: '隐藏搜索',
         path: '/day3'
     },
+    {
+        name: '模糊加载',
+        path: '/day4'
+    },
 
 
 
