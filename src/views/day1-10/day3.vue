@@ -1,25 +1,21 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 const value = ref('')
-const realWidth = ref(170)
-const value1 = ref(1)
-const value2 = ref('block')
-
+const visible = ref(true)
+const input = ref<any>(null)
 const changeWidth = () => {
-    value1.value = 0.1
-    setTimeout(() => {
-        value2.value = 'none'
-    }, 480)
+    visible.value = visible.value ? false : true
+    if (visible.value) {
+        focusInput()
+    }
 }
 
-const inputStyle = computed(() => {
-    return {
-        transform: `scale(${value1.value}, ${value1.value})`,
-        transition: "all 0.5s ease",
-        display: value2.value,
-    }
+onMounted(() => {
+    focusInput()
 })
-
+const focusInput = () => {
+    input.value.focus()
+}
 
 </script>
 
@@ -27,10 +23,10 @@ const inputStyle = computed(() => {
     <div class="search-box">
 
         <div class="search-content">
-            <input class="search-input" :style="inputStyle" v-model="value" placeholder=""
+            <input :class="visible ? 'search-input' : 'search-input2'" ref="input" v-model="value" placeholder=""
                 placeholder-class="input-placeholder" @input="" />
 
-            <el-icon :size="24" color="#333" @click="changeWidth">
+            <el-icon :size="34" color="#333" @click="changeWidth">
                 <Search />
             </el-icon>
         </div>
@@ -50,18 +46,32 @@ const inputStyle = computed(() => {
 }
 
 .search-content {
-    background-color: red;
+    background-color: #fff;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
 }
 
 
 .search-input {
-    height: 20px;
+    height: 40px;
     padding: 15px;
-    width: 170px;
+    width: 340px;
     border: none;
     box-sizing: border-box;
+    transition: all 0.5s ease;
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+.search-input2 {
+    height: 0px;
+    padding: 0px;
+    width: 0px;
+    border: none;
+    box-sizing: border-box;
+    /* display: none; */
+    transition: all 0.5s ease;
 }
 </style>
