@@ -30,6 +30,10 @@ const listarr: ListItem[] = [
         name: '模糊加载',
         path: '/day4'
     },
+    {
+        name: '动效列表',
+        path: '/day5'
+    },
 
 
 
