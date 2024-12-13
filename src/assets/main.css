@@ -26,7 +26,19 @@ a,
   body {
     display: flex;
     /* place-items: center; */
+    cursor: url(../static/plan2.png), auto;
+  }
 
+  body :hover {
+    cursor: url(../static/plan2.png), auto;
+  }
+
+  div :hover {
+    cursor: url(../static/plan2.png), auto;
+  }
+
+  a {
+    cursor: url(../static/plan2.png), auto;
   }
 
   #app {

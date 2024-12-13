@@ -11,7 +11,7 @@ const handleVisibility = (isVisible: boolean, entry: IntersectionObserverEntry) 
 
 // 自定义指令 v-visible
 const vVisible: Directive = {
-    mounted(el: HTMLElement, binding) {
+    mounted(el: any, binding) {
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {

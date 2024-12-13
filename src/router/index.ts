@@ -45,6 +45,16 @@ const router = createRouter({
       name: 'day5',
       component: () => import('../views/day1-10/day5.vue'),
     },
+    {
+      path: '/day6',
+      name: 'day6',
+      component: () => import('../views/day1-10/day6.vue'),
+    },
+    {
+      path: '/day7',
+      name: 'day7',
+      component: () => import('../views/day1-10/day7.vue'),
+    },
   ],
 })
 
