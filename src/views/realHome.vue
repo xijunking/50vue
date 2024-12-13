@@ -80,7 +80,7 @@ const listarr: ListItem[] = [
                 <el-row :gutter="20">
                     <el-col v-for="(item, index) in listarr" :span="4" :key="index" style="margin-bottom: 14px;">
                         <RouterLink :to="item.path">
-                            <el-card shadow="hover">{{ item.name }}</el-card>
+                            <el-card shadow="hover" class="xcard">{{ item.name }}</el-card>
                         </RouterLink>
                     </el-col>
                 </el-row>
@@ -113,5 +113,15 @@ const listarr: ListItem[] = [
     border-radius: 50%;
     pointer-events: none;
     transition: transform 0.05s linear;
+}
+
+.xcard{
+    border: solid 4px #FFFFFF;
+    transition: background-color 0.9s ease, border-color 0.9s ease !important;
+}
+
+.xcard :hover{
+    background-color: #0ea5e8;
+    border: solid 4px #000000;
 }
 </style>
