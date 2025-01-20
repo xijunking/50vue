@@ -4,22 +4,22 @@
 
 
         <div class="login-content">
-            <h2 style="margin-bottom: 20px;">Please Login</h2>
+            <h2 style="margin-bottom: 20px;">请登录</h2>
 
             <div class="login-formItem">
-                <label class="login-label">Email</label>
+                <label class="login-label">邮箱</label>
                 <input type="text" class="login-input">
             </div>
 
             <div class="login-formItem">
-                <label class="login-label">Password</label>
+                <label class="login-label">密码</label>
                 <input type='password' class="login-input">
             </div>
 
 
-            <button class="login-btn">Login</button>
+            <button class="login-btn">登录</button>
 
-            <div class="footer-text">Don't have an account? <span>Register</span></div>
+            <div class="footer-text">没有账户 ? <span style="color: #86b5c0;">注册</span></div>
         </div>
 
     </div>
