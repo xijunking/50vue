@@ -2,11 +2,9 @@
 import { computed, ref } from 'vue';
 import { RouterLink } from 'vue-router'
 
-
 // 定义鼠标位置
 const mouseX = ref(0);
 const mouseY = ref(0);
-
 
 // 处理鼠标移动事件
 const handleMouseMove = (event: any) => {
@@ -115,12 +113,13 @@ const listarr: ListItem[] = [
     transition: transform 0.05s linear;
 }
 
-.xcard{
+.xcard {
+    text-align: center;
     border: solid 4px #FFFFFF;
     transition: background-color 0.9s ease, border-color 0.9s ease !important;
 }
 
-.xcard :hover{
+.xcard :hover {
     background-color: #0ea5e8;
     border: solid 4px #000000;
 }
