@@ -16,8 +16,7 @@
                 <input type='password' class="login-input">
             </div>
 
-
-            <button class="login-btn">登录</button>
+            <button class="login-btn" @click="happyFun">登录</button>
 
             <div class="footer-text">没有账户 ? <span style="color: #86b5c0;">注册</span></div>
         </div>
@@ -32,8 +31,25 @@ import { ref } from 'vue'
 const msg = ref('Hello Vue 3.0 + Vite')
 console.log(msg.value)
 
+const mesIndex = ref(0)
+const mesArr = ref([
+    '究竟什么是生活，我也不太懂，但你总要顺应主流社会吧，这是在说什么，',
+    '是什么神人在写神文，大概这个人如第一句话这般混乱吧，我想提高自己',
+    '以抵消现状带来的焦虑，每每坚持不下来，也会去反思到底什么原因呢，身体原因？意志不够坚定？',
+    '我觉得意志不够坚定还是身体原因 为什么又身体原因呢，归根结底这就是命吗',
+    '世界太深奥了，每次想到这里 都再找不出其他的答案 深陷虚无主义的陷阱',
+])
 
+const happyFun = () => {
 
+    if (mesIndex.value == 4) {
+        alert('你太棒了，你终于找到我啦')
+    } else {
+        alert(mesArr.value[mesIndex.value])
+        mesIndex.value = mesIndex.value + 1
+    }
+    console.log('happyFun')
+}
 
 
 </script>
@@ -68,7 +84,6 @@ console.log(msg.value)
 
 .login-label {
     text-align: left;
-
 }
 
 .login-input {
@@ -77,7 +92,7 @@ console.log(msg.value)
     background-color: #2b4e6c;
     border: none;
     border-bottom: solid 3px #FFF;
-
+    color: #FFF;
 }
 
 
@@ -108,8 +123,7 @@ input:focus {
     margin-top: 30px;
 }
 
-.footer-text{
+.footer-text {
     /* margin-top: 20px; */
 }
-
 </style>

@@ -11,9 +11,6 @@ const msg = ref('Hello Vue 3.0 + Vite')
 console.log(msg.value)
 
 
-
-
-
 </script>
 
 <style scoped>
