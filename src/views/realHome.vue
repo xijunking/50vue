@@ -56,6 +56,10 @@ const listarr: ListItem[] = [
         path: '/day6'
     },
     {
+        name: 'bestPage',
+        path: '/day7'
+    },
+    {
         name: 'About',
         path: '/about'
     },
