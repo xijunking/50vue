@@ -23,9 +23,8 @@ a,
 }
 
 @media (min-width: 1024px) {
-  body {
+  /* body {
     display: flex;
-    /* place-items: center; */
     cursor: url(../static/plan2.png), auto;
   }
 
@@ -39,6 +38,10 @@ a,
 
   a {
     cursor: url(../static/plan2.png), auto;
+  } */
+
+  body {
+    display: flex;
   }
 
   #app {

@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue';
 import { RouterLink } from 'vue-router'
 
+/*
 // 定义鼠标位置
 const mouseX = ref(0);
 const mouseY = ref(0);
@@ -16,6 +17,7 @@ const handleMouseMove = (event: any) => {
 const cursorStyle = computed(() => ({
     transform: `translate(${mouseX.value}px, ${mouseY.value}px)`,
 }));
+*/
 
 interface ListItem {
     name: string;
@@ -68,11 +70,14 @@ const listarr: ListItem[] = [
 </script>
 
 <template>
-    <div style="position: relative;" @mousemove="handleMouseMove">
-        <div class="cursor-background" :style="cursorStyle"></div>
+    <div style="position: relative;">
+        <!-- <div class="cursor-background" :style="cursorStyle"></div> -->
         <div class="main-box">
-            <header class="header">
+            <header class="header" style="display: flex; justify-content: space-between; align-items: center;">
                 <h2>50 project</h2>
+                <router-link to="/">
+                    <el-button type="primary" link>返回首页</el-button>
+                </router-link>
             </header>
 
             <div>
