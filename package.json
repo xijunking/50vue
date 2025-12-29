@@ -1,5 +1,5 @@
 {
-  "name": "xijunProject",
+  "name": "xijun-project",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -12,8 +12,10 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "@types/three": "^0.182.0",
     "element-plus": "^2.8.8",
     "pinia": "^2.2.6",
+    "three": "^0.182.0",
     "vue": "^3.5.13",
     "vue-router": "^4.4.5"
   },

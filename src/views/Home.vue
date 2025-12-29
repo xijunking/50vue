@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
+import FluidBackground from '@/components/FluidBackground.vue'
 
 const router = useRouter()
 
@@ -12,6 +13,10 @@ const goAbout = () => {
   router.push('/about')
 }
 
+const goNav = () => {
+  router.push('/nav')
+}
+
 const handlePendingFeature = (featureName: string) => {
   ElMessage.info(`${featureName} 功能正在开发中，敬请期待！`)
 }
@@ -19,9 +24,8 @@ const handlePendingFeature = (featureName: string) => {
 
 <template>
   <div class="welcome-container">
-    <!-- 装饰性背景圆 -->
-    <div class="bg-circle circle-1"></div>
-    <div class="bg-circle circle-2"></div>
+    <!-- 抽象流体背景 -->
+    <FluidBackground />
     
     <!-- 第一屏：欢迎标题 -->
     <section class="scroll-section">
@@ -46,13 +50,13 @@ const handlePendingFeature = (featureName: string) => {
             <el-icon :size="24"><Monitor /></el-icon>
           </div>
           <div class="text-box">
-            <h3>50 Vue Projects</h3>
+            <h3>Vue Projects</h3>
             <p>交互实战案例集</p>
           </div>
           <el-icon class="arrow"><ArrowRight /></el-icon>
         </div>
         
-        <div class="action-card" @click="handlePendingFeature('网址导航')">
+        <div class="action-card" @click="goNav">
           <div class="icon-box">
             <el-icon :size="24"><Compass /></el-icon>
           </div>
@@ -118,39 +122,6 @@ const handlePendingFeature = (featureName: string) => {
   overflow-y: scroll; /* 允许垂直滚动 */
   scroll-snap-type: y mandatory; /* 开启滚动捕捉 */
   scroll-behavior: smooth;
-}
-
-/* 装饰背景 - 固定定位，不随内容滚动 */
-.bg-circle {
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(80px);
-  z-index: 1;
-  opacity: 0.6;
-  pointer-events: none; /* 防止遮挡点击 */
-}
-
-.circle-1 {
-  width: 400px;
-  height: 400px;
-  background: #4f46e5;
-  top: -100px;
-  left: -100px;
-  animation: float 8s infinite ease-in-out;
-}
-
-.circle-2 {
-  width: 500px;
-  height: 500px;
-  background: #0ea5e9;
-  bottom: -150px;
-  right: -100px;
-  animation: float 10s infinite ease-in-out reverse;
-}
-
-@keyframes float {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(20px, 40px); }
 }
 
 /* 滚动分屏容器 */

@@ -20,4 +20,10 @@ export default [
         name: 'about',
         component: () => import('@/views/About.vue'),
     },
+    // 网址导航页
+    {
+        path: '/nav',
+        name: 'nav',
+        component: () => import('@/views/NavPage.vue'),
+    },
 ]
