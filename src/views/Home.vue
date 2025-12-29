@@ -34,7 +34,7 @@ const handlePendingFeature = (featureName: string) => {
           Welcome to <span class="highlight">Xijun's Space</span>
         </h1>
         <p class="subtitle">Code · Life · Share</p>
-        <p class="description">探索编程的无限可能，记录生活的点滴瞬间</p>
+        <p class="description">3.14159265358979323846264338327950288419716939937510...</p>
         <div class="scroll-hint">
           <span>向下滑动探索</span>
           <el-icon class="scroll-icon"><ArrowDown /></el-icon>
@@ -66,7 +66,7 @@ const handlePendingFeature = (featureName: string) => {
           </div>
         </div>
         
-        <div class="action-card" @click="handlePendingFeature('休闲娱乐')">
+        <div class="action-card" @click="router.push('/games')">
           <div class="icon-box">
             <el-icon :size="24"><Controller /></el-icon>
           </div>
@@ -94,7 +94,7 @@ const handlePendingFeature = (featureName: string) => {
         <div class="feature-item">
           <span class="feature-icon">🚀</span>
           <h3>实战驱动</h3>
-          <p>50+ 真实场景交互案例</p>
+          <p>真实场景交互案例</p>
         </div>
         <div class="feature-item">
           <span class="feature-icon">🛠️</span>

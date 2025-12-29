@@ -66,7 +66,7 @@
               >
                 <div class="card-icon">
                   <img 
-                    :src="`https://api.iowen.cn/favicon/${getDomain(link.url)}.png`" 
+                    :src="`https://www.google.com/s2/favicons?domain=${getDomain(link.url)}&sz=128`" 
                     @error="handleImageError"
                     alt="icon"
                   />
@@ -104,7 +104,7 @@ import {
 
 const router = useRouter()
 const searchQuery = ref('')
-const currentCategory = ref('common')
+const currentCategory = ref('tools')
 const linksAreaRef = ref<HTMLElement | null>(null)
 let isClickScrolling = false // 防止点击滚动时触发滚动监听
 
@@ -119,8 +119,8 @@ const getDomain = (url: string) => {
 
 const handleImageError = (e: Event) => {
   const target = e.target as HTMLImageElement
-  // 默认图标
-  target.src = 'https://github.com/favicon.ico'
+  // 默认图标 (Globe icon)
+  target.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTRhM2I4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiPjwvY2lyY2xlPjxsaW5lIHgxPSIyIiB5MT0iMTIiIHgyPSIyMiIgeTI9IjEyIj48L2xpbmU+PHBhdGggZD0iTTEyIDJhMTUuMyAxNS4zIDAgMCAxIDQgMTAgMTUuMyAxNS4zIDAgMCAxLTQgMTAgMTUuMyAxNS4zIDAgMCAxLTQgLTEwIDE1LjMgMTUuMyAwIDAgMSA0IC0xMCI+PC9wYXRoPjwvc3ZnPg=='
 }
 
 const scrollToCategory = (id: string) => {
@@ -177,6 +177,23 @@ onBeforeUnmount(() => {
 // 数据源
 const categories = [
   {
+    id: 'tools',
+    name: '在线工具',
+    icon: 'Tools',
+    links: [
+      { title: 'iLovePDF', url: 'https://www.ilovepdf.com/zh-cn', desc: '在线处理 PDF 文件的全能工具' },
+      { title: 'TinyPNG', url: 'https://tinypng.com/', desc: '智能 WebP, PNG 和 JPEG 压缩' },
+      { title: 'Smallpdf', url: 'https://smallpdf.com/cn', desc: '全能 PDF 转换与编辑工具' },
+      { title: '草料二维码', url: 'https://cli.im/', desc: '免费好用的二维码生成工具' },
+      { title: 'Convertio', url: 'https://convertio.co/zh/', desc: '在线文件转换工具' },
+      { title: 'Squoosh', url: 'https://squoosh.app/', desc: 'Google 出品的图片压缩工具' },
+      { title: 'Carbon', url: 'https://carbon.now.sh/', desc: '生成漂亮的代码图片' },
+      { title: 'JSON Formatter', url: 'https://jsonformatter.curiousconcept.com/', desc: 'JSON 格式化验证工具' },
+      { title: 'RegExr', url: 'https://regexr.com/', desc: '正则表达式学习与测试' },
+      { title: 'Canva', url: 'https://www.canva.com/', desc: '在线平面设计工具' },
+    ]
+  },
+  {
     id: 'common',
     name: '日常推荐',
     icon: 'Star',
@@ -223,22 +240,6 @@ const categories = [
       { title: 'Google Fonts', url: 'https://fonts.google.com/', desc: '免费开源字体库' },
       { title: 'Color Hunt', url: 'https://colorhunt.co/', desc: '设计师的配色灵感' },
       { title: 'IconFont', url: 'https://www.iconfont.cn/', desc: '阿里巴巴矢量图标库' },
-    ]
-  },
-  {
-    id: 'tools',
-    name: '在线工具',
-    icon: 'Tools',
-    links: [
-      { title: 'TinyPNG', url: 'https://tinypng.com/', desc: '智能 WebP, PNG 和 JPEG 压缩' },
-      { title: 'Smallpdf', url: 'https://smallpdf.com/cn', desc: '全能 PDF 转换与编辑工具' },
-      { title: '草料二维码', url: 'https://cli.im/', desc: '免费好用的二维码生成工具' },
-      { title: 'Convertio', url: 'https://convertio.co/zh/', desc: '在线文件转换工具' },
-      { title: 'Squoosh', url: 'https://squoosh.app/', desc: 'Google 出品的图片压缩工具' },
-      { title: 'Carbon', url: 'https://carbon.now.sh/', desc: '生成漂亮的代码图片' },
-      { title: 'JSON Formatter', url: 'https://jsonformatter.curiousconcept.com/', desc: 'JSON 格式化验证工具' },
-      { title: 'RegExr', url: 'https://regexr.com/', desc: '正则表达式学习与测试' },
-      { title: 'Canva', url: 'https://www.canva.com/', desc: '在线平面设计工具' },
     ]
   },
   {

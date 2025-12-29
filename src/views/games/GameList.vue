@@ -1,72 +1,56 @@
 <script setup lang="ts">
 import { RouterLink, useRouter } from 'vue-router'
-import { ArrowLeft, Monitor } from '@element-plus/icons-vue'
 import FluidBackground from '@/components/FluidBackground.vue'
 
 const router = useRouter()
 
-interface ListItem {
+interface GameItem {
     name: string;
     path: string;
     desc?: string;
     icon?: string;
+    status: 'active' | 'pending';
 }
 
-const listarr: ListItem[] = [
+const gameList: GameItem[] = [
     {
-        name: '扩展卡片',
-        path: '/day0',
-        desc: '点击展开的弹性卡片画廊',
-        icon: 'Picture'
+        name: '贪吃蛇',
+        path: '/games/snake',
+        desc: '经典贪吃蛇游戏，挑战你的反应速度',
+        icon: 'IceCream',
+        status: 'pending'
     },
     {
-        name: '进度步骤',
-        path: '/day1',
-        desc: '多步骤进度条控制器',
-        icon: 'Operation'
+        name: '扫雷',
+        path: '/games/minesweeper',
+        desc: '逻辑与推理的经典挑战',
+        icon: 'Trophy',
+        status: 'pending'
     },
     {
-        name: '页面旋转',
-        path: '/day2',
-        desc: '独特的旋转导航菜单交互',
-        icon: 'Refresh'
-    },
-    {
-        name: '隐藏搜索',
-        path: '/day3',
-        desc: '优雅的展开式搜索栏',
-        icon: 'Search'
-    },
-    {
-        name: '模糊加载',
-        path: '/day4',
-        desc: '图片加载过程的模糊渐变效果',
-        icon: 'PictureRounded'
-    },
-    {
-        name: '动效列表',
-        path: '/day5',
-        desc: '带有滚动视差的动态列表',
-        icon: 'List'
-    },
-    {
-        name: '登录表单',
-        path: '/day6',
-        desc: '带有浮动标签的交互式表单',
-        icon: 'User'
-    },
-    {
-        name: 'Split Landing',
-        path: '/day7',
-        desc: '双屏滑动的着陆页设计',
-        icon: 'CopyDocument'
+        name: '俄罗斯方块',
+        path: '/games/tetris',
+        desc: '消除方块，获得高分',
+        icon: 'Moon',
+        status: 'active'
     },
 ]
 
+const handleGameClick = (item: GameItem) => {
+    if (item.status === 'pending') {
+        // 这里的 ElMessage 需要导入，或者如果项目中已经自动导入则不需要
+        // 为了保险起见，我们还是导入一下
+        import('element-plus').then(({ ElMessage }) => {
+             ElMessage.info(`${item.name} 正在开发中，敬请期待！`)
+        })
+    } else {
+        router.push(item.path)
+    }
+}
 </script>
 
 <template>
-    <div class="project-page">
+    <div class="game-page">
         <FluidBackground />
         
         <div class="content-container">
@@ -76,34 +60,37 @@ const listarr: ListItem[] = [
                         <el-icon><ArrowLeft /></el-icon>
                         <span>返回首页</span>
                     </div>
-                    <h2 class="page-title">50 Projects <span class="highlight">Collection</span></h2>
-                    <p class="subtitle">精选 Vue3 交互实战案例</p>
+                    <h2 class="page-title">休闲 <span class="highlight">娱乐</span></h2>
+                    <p class="subtitle">放松心情，享受游戏乐趣</p>
                 </div>
             </header>
 
             <div class="grid-container">
-                <RouterLink 
-                    v-for="(item, index) in listarr" 
+                <div 
+                    v-for="(item, index) in gameList" 
                     :key="index" 
-                    :to="item.path"
-                    class="project-card"
+                    class="game-card"
+                    @click="handleGameClick(item)"
                 >
                     <div class="card-content">
                         <div class="card-icon">
-                            <el-icon><Monitor /></el-icon>
+                            <el-icon><component :is="item.icon || 'Controller'" /></el-icon>
                         </div>
                         <h3 class="card-title">{{ item.name }}</h3>
-                        <p class="card-desc">{{ item.desc || '交互实战案例' }}</p>
+                        <p class="card-desc">{{ item.desc || '精彩小游戏' }}</p>
+                        <div v-if="item.status === 'pending'" class="status-badge">
+                            待开发
+                        </div>
                     </div>
                     <div class="card-overlay"></div>
-                </RouterLink>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <style scoped>
-.project-page {
+.game-page {
     min-height: 100vh;
     width: 100%;
     background-color: #0f172a;
@@ -150,6 +137,7 @@ const listarr: ListItem[] = [
 
 .highlight {
     background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -168,20 +156,20 @@ const listarr: ListItem[] = [
     animation: fadeInUp 1s ease-out 0.2s backwards;
 }
 
-/* Project Card */
-.project-card {
+/* Game Card */
+.game-card {
     position: relative;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 20px;
     padding: 30px;
-    text-decoration: none;
+    cursor: pointer;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: blur(10px);
 }
 
-.project-card:hover {
+.game-card:hover {
     transform: translateY(-8px);
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(99, 102, 241, 0.3);
@@ -199,8 +187,8 @@ const listarr: ListItem[] = [
 .card-icon {
     width: 48px;
     height: 48px;
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
     border-radius: 12px;
+    background: rgba(99, 102, 241, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -210,33 +198,38 @@ const listarr: ListItem[] = [
     transition: all 0.3s ease;
 }
 
-.project-card:hover .card-icon {
-    transform: scale(1.1) rotate(5deg);
-    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+.game-card:hover .card-icon {
+    background: #6366f1;
     color: #fff;
+    transform: scale(1.1) rotate(5deg);
 }
 
 .card-title {
     font-size: 1.25rem;
-    font-weight: 700;
-    color: #f1f5f9;
+    font-weight: 600;
     margin: 0 0 10px;
-    transition: color 0.3s;
-}
-
-.project-card:hover .card-title {
-    color: #fff;
+    color: #f1f5f9;
 }
 
 .card-desc {
-    font-size: 0.9rem;
     color: #94a3b8;
+    font-size: 0.95rem;
     line-height: 1.5;
     margin: 0;
     flex-grow: 1;
 }
 
-/* Card Hover Effect */
+.status-badge {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 4px 12px;
+    background: rgba(148, 163, 184, 0.1);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    width: fit-content;
+}
+
 .card-overlay {
     position: absolute;
     top: 0;
@@ -244,43 +237,38 @@ const listarr: ListItem[] = [
     right: 0;
     bottom: 0;
     background: radial-gradient(
-        800px circle at var(--mouse-x) var(--mouse-y), 
-        rgba(255, 255, 255, 0.06),
-        transparent 40%
+        circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+        rgba(255, 255, 255, 0.06) 0%, 
+        transparent 60%
     );
     opacity: 0;
-    transition: opacity 0.5s;
+    transition: opacity 0.3s;
     pointer-events: none;
-    z-index: 1;
 }
 
-.project-card:hover .card-overlay {
+.game-card:hover .card-overlay {
     opacity: 1;
 }
 
-/* Animations */
 @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .content-container {
-        padding: 20px;
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-    
-    .page-title {
-        font-size: 2rem;
-    }
-    
-    .grid-container {
-        grid-template-columns: 1fr;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 </style>
