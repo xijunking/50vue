@@ -33,7 +33,8 @@ const {
   moveRight,
   moveDown,
   rotate,
-  hardDrop
+  hardDrop,
+  stopGame
 } = useTetris()
 
 const intervalId = ref<number | null>(null)
@@ -146,6 +147,8 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('keydown', handleKeydown)
+  stopRepeat()
+  stopGame() // 清理游戏循环
 })
 </script>
 
@@ -156,10 +159,10 @@ onUnmounted(() => {
     <div class="game-container">
       <!-- 头部/导航 -->
       <header class="header">
-        <div class="back-btn" @click="router.push('/games')">
+        <RouterLink to="/games" class="back-btn">
           <el-icon><ArrowLeft /></el-icon>
           <span>退出</span>
-        </div>
+        </RouterLink>
         <h1 class="game-title">NEON <span class="highlight">TETRIS</span></h1>
       </header>
 
@@ -339,6 +342,14 @@ onUnmounted(() => {
   cursor: pointer;
   opacity: 0.7;
   transition: opacity 0.3s;
+  /* 增加点击区域和层级 */
+  padding: 10px;
+  margin: -10px;
+  position: relative;
+  z-index: 50; 
+  touch-action: auto; /* 恢复触摸交互，防止被父级 none 影响 */
+  text-decoration: none;
+  color: inherit;
 }
 
 .back-btn:hover {
@@ -614,10 +625,32 @@ kbd {
 
 /* 响应式适配 */
 @media (max-width: 768px) {
+  .tetris-page {
+    /* 移动端强制不允许滚动，内容需适配屏幕 */
+    position: fixed;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .game-container {
+    padding: 10px;
+    height: 100%;
+    justify-content: space-between; /* 分散对齐，确保底部控件在底部 */
+  }
+
+  .header {
+    margin-bottom: 10px;
+    flex-shrink: 0; /* 防止被压缩 */
+  }
+
   .game-layout {
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    width: 100%;
+    flex: 1;
+    min-height: 0; /* 允许 flex item 压缩 */
+    justify-content: flex-start;
   }
 
   .left-panel {
@@ -625,64 +658,95 @@ kbd {
     width: 100%;
     justify-content: center;
     gap: 10px;
+    flex-shrink: 0;
   }
   
   .stat-box {
     flex: 1;
     padding: 5px;
-  }
-
-  .right-panel {
-    display: none; /* 移动端暂时隐藏右侧预览，为了节省空间，或者移到顶部 */
+    /* 减小字号 */
   }
   
-  /* 在移动端，我们可以把 Next Piece 放到顶部左侧面板中，或者简化显示 */
-  /* 这里简化处理：隐藏右侧面板，只显示移动端控制 */
+  .stat-box .label { font-size: 0.7rem; }
+  .stat-box .value { font-size: 1rem; }
 
-  .mobile-controls {
+  .right-panel {
+    /* 移动端将右侧面板移到顶部与左侧面板合并或紧随其后 */
     display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    margin-bottom: 5px;
+  }
+  
+  .next-piece-box {
+    min-height: auto;
+    padding: 5px 10px;
+    flex-direction: row;
+    gap: 10px;
+    flex: 1;
+    justify-content: center;
+  }
+  
+  .piece-preview {
+    margin-top: 0;
+    flex-direction: column;
+    transform: scale(0.8); /* 缩小预览 */
+  }
+
+  .mobile-pause-btn {
+    width: auto;
+    margin-top: 0;
+    font-size: 0.8rem;
+    padding: 5px 10px;
   }
 
   .controls-hint {
     display: none;
   }
   
-  .game-board {
-    width: 60vw;
-    height: 120vw; /* 保持 1:2 */
-  }
-  
-  .mobile-pause-btn {
+  .board-container {
+    padding: 5px;
+    flex-shrink: 1; /* 允许压缩 */
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-    gap: 5px;
+    /* 确保容器不会超出剩余空间 */
+    max-height: 55vh; 
+    overflow: hidden;
   }
-  
-  /* 在移动端将右侧面板的暂停按钮和预览移到合适位置 */
-  .right-panel {
+
+  .game-board {
+    /* 使用 vh 确保在垂直方向上适配，同时限制最大宽度 */
+    height: 50vh;
+    width: 25vh; /* 保持 1:2 比例 */
+    
+    /* 兜底：如果屏幕太窄，使用 vw */
+    max-width: 70vw;
+    max-height: 140vw;
+  }
+
+  .mobile-controls {
     display: flex;
-    flex-direction: row;
     width: 100%;
-    justify-content: space-between;
-    align-items: center;
+    max-width: 400px;
+    padding: 0 10px 20px 10px; /* 底部留白 */
+    flex-shrink: 0;
+    margin-top: auto; /* 推到底部 */
   }
   
-  .next-piece-box {
-    min-height: auto;
-    padding: 5px 15px;
-    flex-direction: row;
-    gap: 10px;
+  .d-pad {
+    width: 140px; /* 稍微加大一点触控区 */
+    height: 140px;
+    transform: scale(0.9); /* 整体缩放适应小屏 */
+    transform-origin: bottom left;
   }
   
-  .piece-preview {
-    margin-top: 0;
-    flex-direction: column;
-  }
-  
-  .mobile-pause-btn {
-    width: auto;
-    margin-top: 0;
+  .action-buttons {
+    transform: scale(0.9);
+    transform-origin: bottom right;
   }
 }
 </style>

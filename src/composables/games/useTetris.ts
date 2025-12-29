@@ -216,20 +216,27 @@ export function useTetris() {
     )
 
     // 简单的旋转墙踢（尝试推离墙壁）
-    let offset = 0
+    // 扩展墙踢逻辑：尝试更多偏移，包括垂直偏移（针对底部旋转）
     const pos = currentPiece.value.pos
-    
-    // 尝试原位，如果不行尝试左右移动一格
-    if (!checkCollision(pos, rotatedShape)) {
-      currentPiece.value.shape = rotatedShape
-    } else if (!checkCollision({ ...pos, x: pos.x - 1 }, rotatedShape)) {
-      currentPiece.value.pos.x -= 1
-      currentPiece.value.shape = rotatedShape
-    } else if (!checkCollision({ ...pos, x: pos.x + 1 }, rotatedShape)) {
-      currentPiece.value.pos.x += 1
-      currentPiece.value.shape = rotatedShape
+    const kicks = [
+      { x: 0, y: 0 },   // 原位
+      { x: -1, y: 0 },  // 左移1
+      { x: 1, y: 0 },   // 右移1
+      { x: -2, y: 0 },  // 左移2 (针对I型)
+      { x: 2, y: 0 },   // 右移2 (针对I型)
+      { x: 0, y: -1 },  // 上移1 (针对底部)
+      { x: -1, y: -1 },
+      { x: 1, y: -1 }
+    ]
+
+    for (const kick of kicks) {
+      const newPos = { x: pos.x + kick.x, y: pos.y + kick.y }
+      if (!checkCollision(newPos, rotatedShape)) {
+        currentPiece.value.shape = rotatedShape
+        currentPiece.value.pos = newPos
+        return
+      }
     }
-    // I型方块可能需要更多尝试，这里简化处理
   }
 
   // 硬掉落
@@ -347,6 +354,7 @@ export function useTetris() {
     moveRight: () => move(1, 0),
     moveDown: () => move(0, 1),
     rotate,
-    hardDrop
+    hardDrop,
+    stopGame // 暴露清理方法
   }
 }

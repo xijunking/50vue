@@ -56,10 +56,10 @@ const handleGameClick = (item: GameItem) => {
         <div class="content-container">
             <header class="header">
                 <div class="header-left">
-                    <div class="back-btn" @click="router.push('/')">
+                    <RouterLink to="/" class="back-btn">
                         <el-icon><ArrowLeft /></el-icon>
                         <span>返回首页</span>
-                    </div>
+                    </RouterLink>
                     <h2 class="page-title">休闲 <span class="highlight">娱乐</span></h2>
                     <p class="subtitle">放松心情，享受游戏乐趣</p>
                 </div>
@@ -122,6 +122,9 @@ const handleGameClick = (item: GameItem) => {
     margin-bottom: 20px;
     transition: color 0.3s;
     font-size: 0.95rem;
+    position: relative;
+    z-index: 50;
+    text-decoration: none;
 }
 
 .back-btn:hover {

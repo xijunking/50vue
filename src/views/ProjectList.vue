@@ -72,10 +72,10 @@ const listarr: ListItem[] = [
         <div class="content-container">
             <header class="header">
                 <div class="header-left">
-                    <div class="back-btn" @click="router.push('/')">
+                    <RouterLink to="/" class="back-btn">
                         <el-icon><ArrowLeft /></el-icon>
                         <span>返回首页</span>
-                    </div>
+                    </RouterLink>
                     <h2 class="page-title">50 Projects <span class="highlight">Collection</span></h2>
                     <p class="subtitle">精选 Vue3 交互实战案例</p>
                 </div>
@@ -135,6 +135,9 @@ const listarr: ListItem[] = [
     margin-bottom: 20px;
     transition: color 0.3s;
     font-size: 0.95rem;
+    position: relative;
+    z-index: 50;
+    text-decoration: none;
 }
 
 .back-btn:hover {

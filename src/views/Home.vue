@@ -113,15 +113,28 @@ const handlePendingFeature = (featureName: string) => {
 
 <style scoped>
 .welcome-container {
-  height: 100vh;
+  /* 使用 fixed 定位确保占满全屏且不受外部影响 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
   width: 100%;
   background-color: #0f172a; /* 深色背景 */
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: #fff;
-  position: relative;
   overflow-y: scroll; /* 允许垂直滚动 */
   scroll-snap-type: y mandatory; /* 开启滚动捕捉 */
   scroll-behavior: smooth;
+  overscroll-behavior: none; /* 禁止橡皮筋效果 */
+  
+  /* 隐藏滚动条 */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* Chrome, Safari, Opera 隐藏滚动条 */
+.welcome-container::-webkit-scrollbar {
+  display: none;
 }
 
 /* 滚动分屏容器 */
@@ -176,6 +189,8 @@ const handlePendingFeature = (featureName: string) => {
   color: #94a3b8;
   max-width: 600px;
   margin: 0 auto;
+  word-break: break-all;
+  padding: 0 20px;
 }
 
 .scroll-hint {

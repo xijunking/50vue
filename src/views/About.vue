@@ -4,10 +4,10 @@
     
     <div class="content-container">
       <header class="about-header">
-        <div class="back-btn" @click="router.push('/')">
+        <RouterLink to="/" class="back-btn">
           <el-icon><ArrowLeft /></el-icon>
           <span>返回首页</span>
-        </div>
+        </RouterLink>
       </header>
 
       <main class="profile-card">
@@ -80,6 +80,9 @@ const router = useRouter()
   cursor: pointer;
   color: #94a3b8;
   transition: color 0.3s;
+  position: relative;
+  z-index: 50;
+  text-decoration: none;
 }
 
 .back-btn:hover {

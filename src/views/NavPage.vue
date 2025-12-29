@@ -5,10 +5,10 @@
     <div class="content-container">
       <!-- 头部 -->
       <header class="nav-header">
-        <div class="back-btn" @click="router.push('/')">
+        <RouterLink to="/" class="back-btn">
           <el-icon><ArrowLeft /></el-icon>
           <span>返回首页</span>
-        </div>
+        </RouterLink>
         <h1 class="page-title">网址导航 <span class="highlight">Navigator</span></h1>
         <p class="page-subtitle">精选优质开发资源与工具</p>
       </header>
@@ -308,6 +308,9 @@ const filteredCategories = computed(() => {
   margin-bottom: 20px;
   transition: color 0.3s;
   font-size: 0.95rem;
+  position: relative;
+  z-index: 50;
+  text-decoration: none;
 }
 
 .back-btn:hover {
