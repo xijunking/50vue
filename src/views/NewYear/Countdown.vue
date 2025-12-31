@@ -14,8 +14,6 @@ const timeLeft = ref({
 const currentYear = new Date().getFullYear()
 const nextYear = currentYear + 1
 const targetDate = new Date(`${nextYear}-01-01T00:00:00`).getTime()
-// 临时测试：设置为 10 秒后
-// const targetDate = new Date().getTime() + 10000
 
 let timer: number | null = null
 

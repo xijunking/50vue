@@ -28,8 +28,8 @@ export default [
     },
     // 跨年倒计时
     {
-        path: '/new-year-countdown',
-        name: 'new-year-countdown',
+        path: '/newyear',
+        name: 'newyear',
         component: () => import('@/views/NewYear/Countdown.vue'),
     },
 ]
