@@ -26,4 +26,10 @@ export default [
         name: 'nav',
         component: () => import('@/views/NavPage.vue'),
     },
+    // 跨年倒计时
+    {
+        path: '/new-year-countdown',
+        name: 'new-year-countdown',
+        component: () => import('@/views/NewYear/Countdown.vue'),
+    },
 ]
