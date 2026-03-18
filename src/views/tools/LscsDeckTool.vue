@@ -8,14 +8,18 @@ const decks = deckData as HearthstoneDeck[]
 const searchKeyword = ref('')
 const copiedDeckId = ref('')
 
+const sortedDecks = computed(() => {
+  return [...decks].sort((left, right) => compareDeckOrder(left, right))
+})
+
 const filteredDecks = computed(() => {
   const keyword = searchKeyword.value.trim().toLowerCase()
 
   if (!keyword) {
-    return decks
+    return sortedDecks.value
   }
 
-  return decks.filter((deck) => {
+  return sortedDecks.value.filter((deck) => {
     const searchableText = [
       deck.name,
       deck.rawName,
@@ -58,6 +62,30 @@ const copyDeckCode = async (deck: HearthstoneDeck) => {
 
 const clearSearch = () => {
   searchKeyword.value = ''
+}
+
+const compareDeckOrder = (left: HearthstoneDeck, right: HearthstoneDeck) => {
+  const timeDiff = getSortTimestamp(right) - getSortTimestamp(left)
+
+  if (timeDiff !== 0) {
+    return timeDiff
+  }
+
+  return left.name.localeCompare(right.name, 'zh-Hans-CN')
+}
+
+const getSortTimestamp = (deck: HearthstoneDeck) => {
+  const candidates = [deck.publishedAt, deck.collectedAt, deck.batch]
+
+  for (const value of candidates) {
+    const timestamp = Date.parse(value)
+
+    if (!Number.isNaN(timestamp)) {
+      return timestamp
+    }
+  }
+
+  return 0
 }
 
 const copyText = async (text: string) => {

@@ -6,6 +6,7 @@ const DEFAULT_INPUT = 'raw-data'
 const DEFAULT_OUTPUT = 'src/data/hearthstone-decks.json'
 const DECK_CODE_RE = /^[A-Za-z0-9+/=]{60,}$/
 const META_RE = /^([A-Za-z][A-Za-z0-9_-]*):\s*(.+)$/
+const CLASS_KEYWORD_RE = /(死亡骑士|DK|死骑|恶魔猎手|瞎|德鲁伊|德|猎人|猎|法师|法|圣骑士|骑|牧师|牧|潜行者|盗贼|贼|萨满|萨|术士|术|战士|战)/
 
 async function main() {
   const args = parseArgs(process.argv.slice(2))
@@ -237,8 +238,11 @@ function extractDecks(lines) {
 }
 
 function findDeckName(lines, codeIndex) {
-  for (let i = codeIndex - 1; i >= 0; i -= 1) {
+  let checkedLines = 0
+
+  for (let i = codeIndex - 1; i >= 0 && checkedLines < 6; i -= 1) {
     const line = lines[i].trim()
+    checkedLines += 1
 
     if (!line || line === '图片' || isDeckCode(line)) {
       continue
@@ -261,11 +265,15 @@ function isLikelyDeckName(line) {
     return false
   }
 
-  if (/[。！？!?,，：:]/.test(line)) {
+  if (/^(author|sourceType|collectedAt|publishedAt)\s*:/i.test(line)) {
     return false
   }
 
-  if (/^(author|sourceType|collectedAt|publishedAt)\s*:/i.test(line)) {
+  if (/订阅|关注|评论区|讲解|欢迎|大家|内容|视频|更新|粉丝/.test(line)) {
+    return false
+  }
+
+  if (!CLASS_KEYWORD_RE.test(line)) {
     return false
   }
 
