@@ -8,7 +8,9 @@
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
-    "type-check": "vue-tsc --build --force"
+    "type-check": "vue-tsc --build --force",
+    "generate:decks": "node scripts/deck-txt-to-json.mjs",
+    "create:deck-txt": "node scripts/create-deck-txt-template.mjs"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",

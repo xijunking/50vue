@@ -26,6 +26,12 @@ export default [
         name: 'nav',
         component: () => import('@/views/NavPage.vue'),
     },
+    // 炉石卡组工具页
+    {
+        path: '/lscs',
+        name: 'lscs',
+        component: () => import('@/views/tools/LscsDeckTool.vue'),
+    },
     // 跨年倒计时
     {
         path: '/newyear',
