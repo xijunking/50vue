@@ -1,0 +1,31 @@
+author: 炉石东少
+sourceType: bilibili
+collectedAt: 2026-03-20 00:00:00
+publishedAt: 2026-03-19 23:41:00
+
+# 每套卡组建议使用“名称 + 下一行卡组代码”的形式整理
+# 可以连续粘贴多套，脚本会自动识别
+
+标准灌注德1：
+AAECAZICBKqBB/KDB6+HB4/BBw2HnwSunwSB1ATggQeIgwewhwekiQeqrwfWwAfXwAfbwAfswAf2wQcAAA==
+
+标准灌注德2：
+AAECAZICBKqBB5KDB/KDB6+HBw2HnwSunwSB1ATW+gbggQf3gQeIgwewhwekiQeYlweqrwesrwfXwAcAAA==
+
+标准铺场德1：
+AAECAZICApOyB+DABw6HnwSunwTZnwSB1ASuhweSlweUlwfXlwfanQfWwAfXwAfbwAfswAf2wQcAAA==
+
+标准铺场德2：
+AAECAZICBNmfBK+HB9jAB+DABw2B1ASSlweUlwfQmwfanQfJrAfWwAfXwAfawAfbwAfswAePwQf2wQcAAA==
+
+标准兆示萨：
+AAECAaoICNOeBoKYB9umB9+mB+WmB9C/B4LUB5vUBwuvnwTmlgeYsAe8sQePvge1wAfDwAfJwAf3wAf2wQfv4wcAAA==
+
+标准三绿DK：
+AAECAfHhBALtnweOvwcOhfYE1J4G1+UGyIwHupUHopcHvJoH0JsH0q0HhrEH4rEHiL8H/78HtcAHAAA=
+
+标准蛋术：
+AAECAf0GBNGCB/WYB+ybB9edBw2PnwSxnwSRoATnoATEngbrhAepiAeEmQfgnQeTvgfXvgfYvgfgvgcAAA==
+
+狂野野兽猎：
+AAEBAR8IuwXm7gOpnwSX9gWToQaUoQbnpQbi4wYL3gTZCaLOA8j2BcuOBuqlBpKmBozBBq+SB+KWB7vABwAA

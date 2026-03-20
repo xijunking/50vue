@@ -1,0 +1,32 @@
+author: 白石游报
+sourceType: bilibili
+collectedAt: 2026-03-20 00:00:00
+publishedAt: 2026-03-19 21:55:00
+
+# 每套卡组建议使用“名称 + 下一行卡组代码”的形式整理
+# 可以连续粘贴多套，脚本会自动识别
+
+法术瞎
+AAECAea5Awa1mAeKqgeSqgeTqgensQfosQcM4fgF3v8G/oMHqocHtpcHnrEHobEHv7EHwLEHy7YHkr8Hlb8HAAA=
+蛋战
+AAECAQcEw4MH9ZgH150H6qcHDZ+fBIagBI7UBOPmBsyPB9OXB+CdB9WmB/yvB4+xB9CyB7DBB5zCBwAA
+兆示萨
+AAECAaoICNOeBoKYB9umB9+mB+WmB9C/B4LUB5vUBwuvnwTmlgeYsAe8sQePvge1wAfDwAfJwAf3wAf2wQfv4wcAAA==
+快攻猎
+AAECAR8EmacHmqcHm6cHxbEHDamfBKqfBNOeBq+SB4WVB86bB+6fB5CnB5inB9SvB7TAB7nAB7vABwAA
+邪DK
+AAECAfHhBALtnweOvwcOhfYE1J4G1+UGyIwHupUHopcHvJoH0JsH0q0HhrEH4rEHiL8H/78HtcAHAAA=
+灌注德
+AAECAZICBM6eBtb6BqqBB5SXBw2unwSB1ATggQf3gQeIgwewhwfAhwekiQeqrwfWwAfXwAfbwAfswAcAAA==
+铺场德
+AAECAZICApOyB+DABw6HnwSunwTZnwSB1ASuhweSlweUlwfXlwfanQfWwAfXwAfbwAfswAf2wQcAAA==
+铺场德（无橙卡）
+AAECAZICAA+HnwSunwTZnwSB1ASuhweSlweUlwfXlwfanQeTsgfWwAfXwAfbwAfswAf2wQcAAA==
+铺场德（龙体系）
+AAECAZICBIiDB+CdB+DAB4/BBw2B1ASSlweUlwfanQe4nwfJrAeqrweEvQe1wAfWwAfXwAfbwAfswAcAAA==
+铺场德（托加过牌）
+AAECAZICBq6fBNiYB+CdB7XAB9jAB+DABwzZnwSB1ASuhweUlweYlweqrwe+sgeEvQfWwAfXwAfbwAePwQcAAA==
+发现法
+AAECAf0EBu/8BsODB6ebB/mbB/KyB//fBwyb8gazhwfxkQewmwf6mwfRpgfLtgf5wweGxAeSxAeT2geG4AcAAA==
+蛋术
+AAECAf0GBNGCB/WYB+ybB9edBw2PnwSxnwSRoATnoATEngbrhAepiAeEmQfgnQeTvgfXvgfYvgfgvgcAAA==
